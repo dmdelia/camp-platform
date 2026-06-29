@@ -1,10 +1,17 @@
+<p id="tabs" align="left">
+  <a href="#tabs"><b>🔹 README</b></a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+  <a href="social_media.md"><b>📱 Social Media</b></a>
+</p>
+
+---
+
 # CAMP
 
 ## Cosplay Animatronic Module Platform
 
 ### Engineering Design Document
 
-**Dokumentversion:** 1.0
+**Dokumentversion:** 1.2
 
 **Status:** In Entwicklung
 
