@@ -5133,3 +5133,5 @@ Und eine Plattform, die mit jedem Entwicklungsschritt leistungsfähiger wird, oh
 Mit diesem Dokument endet nicht die Planung von CAMP.
 
 Es bildet vielmehr den Ausgangspunkt für die praktische Umsetzung einer langfristigen Robotikplattform, deren Entwicklung über viele Jahre hinweg fortgeführt werden soll.
+
+[📱 Social Media](social_media.md)
