@@ -715,7 +715,7 @@ Das eigentliche Ziel ist die Entwicklung einer technischen Plattform, auf der zu
 
 # 10. Mechanische Designphilosophie
 
-Die Mechanik bildet das Fundament der gesamten CAMP-Plattform. Jede spätere Funktion – unabhängig davon, ob sie durch Software, Elektronik oder KI gesteuert wird – ist letztendlich durch die mechanischen Möglichkeiten begrenzt.
+Die Mechanik bildet das Fundament der gesamten CAMP-Plattform. Jede spätere Funktion - unabhängig davon, ob sie durch Software, Elektronik oder KI gesteuert wird - ist letztendlich durch die mechanischen Möglichkeiten begrenzt.
 
 Aus diesem Grund besitzt die mechanische Konstruktion höchste Priorität.
 
@@ -1659,7 +1659,7 @@ Diese Denkweise verhindert, dass CAMP mit der Zeit zu einer Sammlung einzelner S
 
 Stattdessen wächst eine konsistente technische Plattform, deren Fähigkeiten mit jedem Entwicklungsabschnitt zunehmen und auf der zukünftige Animatronics nahezu ausschließlich durch neue Mechanik, neue Charakterprofile und neue kreative Ideen entstehen.
 
-# Teil IV – Künstliche Intelligenz und Robotik
+# Teil IV - Künstliche Intelligenz und Robotik
 
 # 24. Künstliche Intelligenz innerhalb von CAMP
 
@@ -2806,7 +2806,7 @@ Dadurch können Musik, Bewegungen und Licht exakt synchron bleiben.
 
 ---
 
-# Teil VII – Benutzererlebnis und Mensch-Maschine-Interaktion
+# Teil VII - Benutzererlebnis und Mensch-Maschine-Interaktion
 
 # 40. Human Interface
 
@@ -3009,3 +3009,875 @@ Während eines Auftritts soll die Technik möglichst in den Hintergrund treten.
 Die Bedienung muss intuitiv, schnell und zuverlässig erfolgen, sodass sich der Benutzer vollständig auf den Charakter konzentrieren kann.
 
 Dieses Prinzip bildet die Grundlage sämtlicher zukünftiger Benutzeroberflächen innerhalb der CAMP-Plattform.
+
+# 43. Netzwerkarchitektur
+
+## 43.1 Grundprinzip
+
+Die CAMP-Plattform ist so konzipiert, dass sie vollständig ohne Internetverbindung betrieben werden kann.
+
+Alle Kernfunktionen müssen lokal verfügbar sein.
+
+Dazu gehören insbesondere:
+
+* Bewegungssteuerung
+* Sprachsystem
+* KI
+* Kameraverarbeitung
+* Telemetrie
+* Audio
+* HUD
+* Charaktersteuerung
+
+Internetzugang stellt lediglich eine optionale Erweiterung dar und darf niemals Voraussetzung für den Betrieb sein.
+
+Dadurch bleibt das System unabhängig von Veranstaltungsorten, Netzwerkqualität oder externen Diensten.
+
+---
+
+## 43.2 Kommunikationsarten
+
+Innerhalb der Plattform existieren drei Kommunikationsarten.
+
+### Interne Kommunikation
+
+Kommunikation zwischen einzelnen Komponenten des Roboters.
+
+Beispiele:
+
+* Hauptcomputer ↔ Mikrocontroller
+* Mikrocontroller ↔ Sensoren
+* Mikrocontroller ↔ Servotreiber
+* Suit ↔ Endoskelett
+
+Diese Kommunikation besitzt höchste Priorität.
+
+---
+
+### Lokale Kommunikation
+
+Kommunikation zwischen CAMP und einem Entwicklergerät.
+
+Beispiele:
+
+Laptop
+
+Tablet
+
+Smartphone
+
+Steam Deck
+
+Entwicklungs-PC
+
+Hierfür werden ausschließlich lokale Verbindungen verwendet.
+
+---
+
+### Externe Kommunikation
+
+Kommunikation über das Internet.
+
+Diese ist optional.
+
+Mögliche Anwendungen:
+
+* Datensicherung
+* Softwareupdates
+* Synchronisation
+* Fernwartung
+
+Ein Ausfall der Internetverbindung darf den Animatronic nicht beeinflussen.
+
+---
+
+# 44. Drahtlose Kommunikation
+
+## 44.1 Bluetooth
+
+Bluetooth dient als energiesparende Kurzstreckenverbindung.
+
+Typische Anwendungen:
+
+* Pairing
+* Telemetrie
+* Controller
+* Notfallsteuerung
+* Diagnose
+* Gerätestatus
+
+Aufgrund der begrenzten Bandbreite eignet sich Bluetooth nicht für größere Datenströme wie Videobilder.
+
+---
+
+## 44.2 WLAN
+
+Für datenintensive Anwendungen wird WLAN verwendet.
+
+Typische Anwendungen:
+
+* Kamerastream
+* Entwicklerkonsole
+* Firmwareübertragung
+* Logdateien
+* Motion-Capture
+* Dateiverwaltung
+
+Das Netzwerk wird lokal erstellt.
+
+Internet ist hierfür nicht notwendig.
+
+---
+
+## 44.3 Netzwerkrollen
+
+Je nach Situation kann CAMP unterschiedliche Rollen übernehmen.
+
+### Access Point
+
+Das Endoskelett erstellt selbst ein WLAN.
+
+Andere Geräte verbinden sich mit ihm.
+
+Geeignet für:
+
+* Conventions
+* Messen
+* Demonstrationen
+
+---
+
+### Client
+
+Das Endoskelett verbindet sich mit einem vorhandenen Netzwerk.
+
+Geeignet für:
+
+* Werkstatt
+* Zuhause
+* Labor
+
+---
+
+### Offline
+
+Keine Funkverbindung.
+
+Alle Systeme arbeiten ausschließlich intern.
+
+Dieser Modus besitzt die höchste Ausfallsicherheit.
+
+---
+
+# 45. Telemetrie
+
+## 45.1 Ziel
+
+Telemetrie dient der kontinuierlichen Überwachung sämtlicher Systemzustände.
+
+Sie unterstützt sowohl Entwicklung als auch Wartung.
+
+Alle wichtigen Messwerte sollen in Echtzeit verfügbar sein.
+
+---
+
+## 45.2 Kategorien
+
+### Energie
+
+* Akkustand
+* Spannung
+* Stromaufnahme
+* Restlaufzeit
+
+---
+
+### Rechner
+
+* CPU-Auslastung
+* RAM
+* Datenträger
+* Temperaturen
+
+---
+
+### Mechanik
+
+* Servopositionen
+* Motorströme
+* Gelenktemperaturen
+* Bewegungsstatus
+
+---
+
+### Netzwerk
+
+* Signalstärke
+* Datenrate
+* Paketverlust
+* Latenz
+
+---
+
+### Sensorik
+
+* Kamerastatus
+* Mikrofone
+* IMU
+* Temperatur
+* Luftfeuchtigkeit (optional)
+
+---
+
+## 45.3 Dashboard
+
+Die Telemetrie wird über ein Dashboard dargestellt.
+
+Das Dashboard besitzt mehrere Ansichten.
+
+Operator
+
+Nur wichtige Informationen.
+
+---
+
+Entwickler
+
+Alle Messwerte.
+
+---
+
+Diagnose
+
+Fehleranalyse.
+
+---
+
+Wartung
+
+Kalibrierung.
+
+Jede Ansicht ist auf ihre jeweilige Aufgabe optimiert.
+
+---
+
+# 46. Fehlermanagement
+
+Eine komplexe Plattform benötigt ein strukturiertes Fehlersystem.
+
+Fehlermeldungen dürfen nicht ausschließlich aus technischen Codes bestehen.
+
+Sie müssen sowohl für Entwickler als auch für den späteren Betrieb verständlich sein.
+
+---
+
+## 46.1 Fehlerklassen
+
+Information
+
+Keine Aktion erforderlich.
+
+Beispiel:
+
+Update verfügbar.
+
+---
+
+Warnung
+
+Das System funktioniert weiterhin.
+
+Eine Überprüfung wird empfohlen.
+
+Beispiel:
+
+Akkustand niedrig.
+
+---
+
+Fehler
+
+Eine Funktion ist eingeschränkt.
+
+Beispiel:
+
+Kamera ausgefallen.
+
+---
+
+Kritisch
+
+Der sichere Betrieb ist nicht mehr gewährleistet.
+
+Beispiel:
+
+Überhitzung.
+
+---
+
+Notfall
+
+Das System führt eine sofortige Sicherheitsreaktion aus.
+
+Beispiel:
+
+Kurzschluss erkannt.
+
+---
+
+## 46.2 Fehlercodes
+
+Jeder Fehler erhält eine eindeutige Kennung.
+
+Beispiel:
+
+CAMP-001
+
+Akku kritisch.
+
+---
+
+CAMP-014
+
+Kamera getrennt.
+
+---
+
+CAMP-083
+
+Servo nicht erreichbar.
+
+---
+
+CAMP-104
+
+Temperaturgrenze überschritten.
+
+Diese Kennungen vereinfachen Dokumentation und Fehlersuche erheblich.
+
+---
+
+## 46.3 Selbstdiagnose
+
+Während des Startvorgangs überprüft CAMP sämtliche Kernkomponenten.
+
+Unter anderem:
+
+✓ Prozessor
+
+✓ Speicher
+
+✓ Kameras
+
+✓ Mikrofone
+
+✓ Lautsprecher
+
+✓ Netzwerk
+
+✓ Sensoren
+
+✓ Controller
+
+✓ Aktoren
+
+✓ Konfigurationsdateien
+
+Erst nach erfolgreicher Prüfung wird das System vollständig freigegeben.
+
+---
+
+## 46.4 Laufende Überwachung
+
+Die Selbstdiagnose endet nicht nach dem Start.
+
+Während des gesamten Betriebs werden alle Komponenten kontinuierlich überwacht.
+
+Erkennt das System einen Defekt, entscheidet es abhängig von der Fehlerklasse über geeignete Maßnahmen.
+
+Beispiele:
+
+Neustart eines Softwaredienstes.
+
+Deaktivierung eines Servos.
+
+Reduzierung der Bewegungsgeschwindigkeit.
+
+Warnung im HUD.
+
+Information an den Entwickler.
+
+Aktivierung des Sicherheitsmodus.
+
+Dadurch kann CAMP auf viele Fehler reagieren, ohne dass der gesamte Animatronic ausfällt.
+
+---
+
+# 47. Sicherheitskonzept
+
+Sicherheit besitzt in CAMP eine höhere Priorität als jede andere Funktion.
+
+Ein spektakulärer Animatronic ist wertlos, wenn er den Träger oder andere Personen gefährdet.
+
+Aus diesem Grund wird jede neue Funktion unter Sicherheitsaspekten bewertet.
+
+---
+
+## 47.1 Sicherheitsprinzipien
+
+Für die gesamte Plattform gelten folgende Grundregeln.
+
+**Safety before Performance**
+
+Eine langsamere Bewegung ist einer gefährlichen Bewegung vorzuziehen.
+
+**Predictable Behaviour**
+
+Das System soll sich jederzeit nachvollziehbar verhalten.
+
+Überraschende oder unkontrollierte Bewegungen sind zu vermeiden.
+
+**Fail Safe**
+
+Kann ein Fehler nicht sicher behandelt werden, geht das System automatisch in einen sicheren Zustand über.
+
+---
+
+## 47.2 Notfallmodus
+
+Der Notfallmodus dient ausschließlich dem Schutz von Mensch und Hardware.
+
+Beim Eintritt in diesen Zustand können beispielsweise folgende Maßnahmen erfolgen:
+
+* Deaktivierung aller Hochlast-Aktoren
+* Stoppen laufender Animationen
+* Abschalten nicht benötigter Verbraucher
+* Speichern der Logdateien
+* Anzeige einer Warnung im HUD
+* Akustische Rückmeldung für den Träger
+
+Erst nach einer bewussten Bestätigung darf der normale Betrieb wieder aufgenommen werden.
+
+---
+
+## 47.3 Sicherheitsphilosophie
+
+Während der Entwicklung wird jede Funktion anhand einer einfachen Frage bewertet:
+
+> "Falls diese Funktion genau jetzt ausfällt - was passiert?"
+
+Kann diese Frage nicht zufriedenstellend beantwortet werden, gilt die Funktion als unvollständig.
+
+Diese Denkweise soll sicherstellen, dass CAMP nicht nur technisch beeindruckend, sondern auch langfristig zuverlässig und sicher betrieben werden kann.
+
+# 48. Fertigungskonzept
+
+## 48.1 Zielsetzung
+
+Die CAMP-Plattform wird überwiegend als Eigenentwicklung gefertigt.
+
+Dabei kommen moderne Fertigungsverfahren zum Einsatz, welche eine schnelle Iteration, hohe Flexibilität und kosteneffiziente Prototypen ermöglichen.
+
+Das Ziel besteht nicht darin, jedes Bauteil möglichst hochwertig oder teuer herzustellen.
+
+Stattdessen soll jedes Bauteil den Anforderungen seiner jeweiligen Aufgabe entsprechen.
+
+Je nach Einsatzgebiet können daher unterschiedliche Fertigungsverfahren kombiniert werden.
+
+---
+
+## 48.2 Fertigungsmethoden
+
+Die Plattform soll verschiedene Fertigungstechnologien unterstützen.
+
+Beispiele:
+
+* FDM-3D-Druck
+* SLA-3D-Druck
+* CNC-Bearbeitung
+* Laserschneiden
+* Wasserstrahlschneiden
+* Frästeile
+* Metallprofile
+* Carbonrohre
+* Aluminiumbauteile
+
+Die Auswahl erfolgt nach technischen Anforderungen und nicht nach persönlicher Präferenz.
+
+---
+
+## 48.3 Prototyping
+
+Jede neue Baugruppe beginnt als Prototyp.
+
+Ein Prototyp besitzt ausdrücklich nicht das Ziel, perfekt zu sein.
+
+Seine Aufgabe besteht darin, Fragen zu beantworten.
+
+Beispiele:
+
+Passt das Bauteil?
+
+Ist die Mechanik ausreichend stabil?
+
+Sind Wartungsöffnungen erreichbar?
+
+Lässt sich das Kabel verlegen?
+
+Kann der Servo ausreichend Kraft übertragen?
+
+Erst nach erfolgreicher Beantwortung dieser Fragen erfolgt die Entwicklung einer verbesserten Version.
+
+---
+
+# 49. 3D-Druck-Richtlinien
+
+Da der Großteil der Plattform additiv gefertigt wird, gelten verbindliche Konstruktionsrichtlinien.
+
+Diese dienen sowohl der Druckbarkeit als auch der späteren Wartung.
+
+---
+
+## 49.1 Druckorientierung
+
+Bereits während der Konstruktion muss berücksichtigt werden, in welcher Orientierung ein Bauteil gedruckt wird.
+
+Dadurch lassen sich vermeiden:
+
+* unnötige Stützstrukturen
+* schwache Layerausrichtung
+* schlechte Oberflächen
+* lange Druckzeiten
+
+Die Druckorientierung ist Bestandteil des CAD-Entwurfs.
+
+---
+
+## 49.2 Schraubverbindungen
+
+Nach Möglichkeit werden verschraubte Verbindungen verwendet.
+
+Vorteile:
+
+* zerstörungsfreie Demontage
+* Austauschbarkeit
+* Wartbarkeit
+* Wiederverwendbarkeit
+
+Klebungen werden ausschließlich verwendet, wenn keine sinnvolle Alternative existiert.
+
+---
+
+## 49.3 Gewindeeinsätze
+
+Bei häufig montierten Komponenten sollen Gewindeeinsätze verwendet werden.
+
+Dadurch wird verhindert, dass Kunststoffgewinde durch wiederholtes Verschrauben beschädigt werden.
+
+Dies betrifft insbesondere:
+
+* Wartungsdeckel
+* Servohalter
+* Elektronikgehäuse
+* Kameramodule
+* Sensorhalter
+
+---
+
+## 49.4 Kabelmanagement
+
+Bereits im CAD-Modell müssen Kabel berücksichtigt werden.
+
+Jede Baugruppe erhält:
+
+* Kabelkanäle
+* Zugentlastungen
+* Befestigungspunkte
+* Wartungsreserven
+
+Kabel dürfen niemals nachträglich "irgendwo" verlegt werden.
+
+Sie sind Bestandteil der Konstruktion.
+
+---
+
+# 50. Versionsmanagement
+
+Im Verlauf der Entwicklung entstehen hunderte CAD-Dateien, Firmwarestände und Softwareversionen.
+
+Ohne klare Versionierung wird das Projekt langfristig unwartbar.
+
+---
+
+## 50.1 Versionierung
+
+Jede Änderung erzeugt eine neue Version.
+
+Versionen werden niemals überschrieben.
+
+Beispiel:
+
+v1.0
+
+Erste funktionierende Version.
+
+↓
+
+v1.1
+
+Kleine Verbesserungen.
+
+↓
+
+v1.2
+
+Bugfixes.
+
+↓
+
+v2.0
+
+Grundlegende Überarbeitung.
+
+Dadurch bleibt jede Entwicklungsstufe nachvollziehbar.
+
+---
+
+## 50.2 Änderungsprotokoll
+
+Zu jeder Version gehört ein Changelog.
+
+Es beschreibt:
+
+* neue Funktionen
+* Fehlerbehebungen
+* bekannte Probleme
+* offene Aufgaben
+
+Das Änderungsprotokoll ist Bestandteil jeder Veröffentlichung.
+
+---
+
+## 50.3 Archivierung
+
+Historische Versionen werden dauerhaft archiviert.
+
+Auch scheinbar veraltete Konstruktionen können später wertvolle Informationen enthalten.
+
+Die Entwicklungsgeschichte der Plattform soll jederzeit nachvollziehbar bleiben.
+
+---
+
+# 51. Teststrategie
+
+## 51.1 Philosophie
+
+Jede Baugruppe wird getestet, bevor sie in das Gesamtsystem integriert wird.
+
+Komplexe Systeme lassen sich wesentlich einfacher entwickeln, wenn ihre Komponenten bereits einzeln zuverlässig funktionieren.
+
+---
+
+## 51.2 Teststufen
+
+Die Entwicklung erfolgt in mehreren Testphasen.
+
+### Komponententest
+
+Prüfung eines einzelnen Bauteils.
+
+Beispiel:
+
+Ein Servo.
+
+---
+
+### Modultest
+
+Prüfung einer vollständigen Baugruppe.
+
+Beispiel:
+
+Augenmechanik.
+
+---
+
+### Integrationstest
+
+Mehrere Module arbeiten gemeinsam.
+
+Beispiel:
+
+Augen
+
+*
+
+Kamera
+
+*
+
+HUD
+
+---
+
+### Systemtest
+
+Der vollständige Animatronic wird getestet.
+
+Alle Komponenten arbeiten gleichzeitig.
+
+---
+
+## 51.3 Dokumentation
+
+Jeder Test wird dokumentiert.
+
+Mindestens festgehalten werden:
+
+* Datum
+* Version
+* Tester
+* Ziel
+* Ergebnis
+* Beobachtungen
+* Verbesserungen
+
+Dadurch entsteht langfristig eine vollständige Entwicklungsdokumentation.
+
+---
+
+# 52. Wartung
+
+Ein CAMP-System soll nicht nur funktionieren.
+
+Es soll über Jahre hinweg instand gehalten und weiterentwickelt werden können.
+
+---
+
+## 52.1 Wartungsintervalle
+
+Bestimmte Komponenten müssen regelmäßig überprüft werden.
+
+Beispiele:
+
+* Schrauben
+* Lager
+* Kabel
+* Lüfter
+* Akkus
+* Steckverbinder
+* Servos
+
+Auch wenn kein Fehler sichtbar ist.
+
+Vorbeugende Wartung erhöht die Zuverlässigkeit erheblich.
+
+---
+
+## 52.2 Austauschbarkeit
+
+Kein einzelnes Bauteil soll dauerhaft fest mit einer anderen Baugruppe verbunden sein.
+
+Idealerweise kann jede Komponente innerhalb weniger Minuten ersetzt werden.
+
+Hierdurch reduziert sich sowohl die Reparaturzeit als auch das Risiko weiterer Beschädigungen.
+
+---
+
+## 52.3 Ersatzteile
+
+Für häufig belastete Komponenten sollen Ersatzteile dauerhaft verfügbar sein.
+
+Beispiele:
+
+* Servohebel
+* Zahnräder
+* Lager
+* Kabel
+* Schrauben
+* Halterungen
+
+Dadurch können Reparaturen unmittelbar durchgeführt werden.
+
+---
+
+# 53. Entwicklungsphilosophie
+
+Während der gesamten Projektlaufzeit gelten einige grundlegende Prinzipien.
+
+Diese Regeln sollen sicherstellen, dass CAMP auch nach vielen Jahren konsistent bleibt.
+
+---
+
+## Regel 1
+
+**Plattform vor Charakter.**
+
+Technische Lösungen werden grundsätzlich für die Plattform entwickelt.
+
+Nicht für einzelne Figuren.
+
+---
+
+## Regel 2
+
+**Modularität vor Perfektion.**
+
+Eine austauschbare Lösung ist einer perfekt optimierten Speziallösung vorzuziehen.
+
+---
+
+## Regel 3
+
+**Dokumentation ist Teil der Entwicklung.**
+
+Ein fertig konstruiertes Bauteil ohne Dokumentation gilt als unvollständig.
+
+---
+
+## Regel 4
+
+**Prototypen sind Lernwerkzeuge.**
+
+Ein gescheiterter Prototyp ist kein Misserfolg.
+
+Er liefert Informationen, die in die nächste Version einfließen.
+
+---
+
+## Regel 5
+
+**Mechanik begrenzt Software.**
+
+Eine gute Software kann schlechte Mechanik nur begrenzt ausgleichen.
+
+Deshalb wird mechanischer Qualität hohe Priorität eingeräumt.
+
+---
+
+## Regel 6
+
+**Einfachheit gewinnt.**
+
+Vor jeder neuen Funktion soll geprüft werden, ob das gleiche Ziel mit einer einfacheren Lösung erreicht werden kann.
+
+Komplexität wird nur akzeptiert, wenn sie einen klaren technischen Nutzen bietet.
+
+---
+
+## Regel 7
+
+**Langfristigkeit.**
+
+CAMP ist kein Wochenendprojekt.
+
+Die Plattform wird über viele Jahre hinweg wachsen.
+
+Entscheidungen werden daher nicht ausschließlich für den aktuellen Entwicklungsstand getroffen, sondern sollen auch zukünftige Erweiterungen ermöglichen.
+
+Jede neu entwickelte Baugruppe soll einen Beitrag zu einer langfristig wartbaren, modularen und technisch konsistenten Robotikplattform leisten.
+
+Dieses Prinzip bildet den Kern der gesamten CAMP-Philosophie und dient als Orientierung für sämtliche zukünftigen Entwicklungsentscheidungen.
+
+
+# TODO: NEXT - CAMP OS
