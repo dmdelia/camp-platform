@@ -4,13 +4,13 @@
 
 ### Engineering Design Document
 
-**Dokumentversion:** 0.3
+**Dokumentversion:** 1.0
 
 **Status:** In Entwicklung
 
 **Projektbeginn:** Langfristiges Eigenprojekt
 
-**Autor:** @dmdelia
+**Autor:** @dmdelia [YouTube](https://www.youtube.com/channel/UCyUWYqNNc91BDptC6sKk82Q)
 
 ---
 
@@ -3879,5 +3879,1257 @@ Jede neu entwickelte Baugruppe soll einen Beitrag zu einer langfristig wartbaren
 
 Dieses Prinzip bildet den Kern der gesamten CAMP-Philosophie und dient als Orientierung für sämtliche zukünftigen Entwicklungsentscheidungen.
 
+# 54. CAMP OS
 
-# TODO: NEXT - CAMP OS
+## 54.1 Zielsetzung
+
+CAMP OS ist das zentrale Betriebssystem der CAMP-Plattform.
+
+Es bildet die Softwaregrundlage sämtlicher Endoskelette und verwaltet alle Hardware-, Software- und Charakterkomponenten.
+
+Während das Endoskelett die physische Plattform darstellt, bildet CAMP OS deren digitales Gegenstück.
+
+Sämtliche Funktionen – von der Servosteuerung über Kameraverarbeitung bis hin zur Künstlichen Intelligenz – werden durch CAMP OS koordiniert.
+
+Dadurch entsteht eine klar definierte Trennung zwischen Hardware, Betriebssystem und Charakter.
+
+---
+
+## 54.2 Designphilosophie
+
+CAMP OS verfolgt dieselben Grundprinzipien wie die restliche Plattform.
+
+* Modularität
+* Wartbarkeit
+* Erweiterbarkeit
+* Wiederverwendbarkeit
+* Dokumentierte Schnittstellen
+
+Das Betriebssystem besitzt keinerlei fest eingebauten Charakter.
+
+Nach dem Systemstart existiert zunächst lediglich die technische Plattform.
+
+Erst nach dem Laden eines Charakterpakets erhält der Animatronic seine Identität.
+
+---
+
+## 54.3 Verantwortlichkeiten
+
+CAMP OS übernimmt unter anderem folgende Aufgaben.
+
+* Hardwareverwaltung
+* Servosteuerung
+* Audioverwaltung
+* Kameraverarbeitung
+* Sensorverwaltung
+* Netzwerk
+* Bluetooth
+* WLAN
+* Telemetrie
+* Diagnose
+* Pluginverwaltung
+* Charakterverwaltung
+* Benutzerverwaltung
+* Logging
+* Fehlermanagement
+* Updateverwaltung
+* Sicherheitsfunktionen
+
+Alle höheren Softwarekomponenten bauen auf diesen Diensten auf.
+
+---
+
+# 55. Charakterpakete
+
+## 55.1 Grundidee
+
+Innerhalb von CAMP wird jeder Charakter als eigenständiges Paket behandelt.
+
+Ein Charakter besteht nicht aus einzelnen Dateien, sondern aus einem einzigen Container.
+
+Die Dateiendung lautet:
+
+`.campp`
+
+(**Cosplay Animatronic Modular Platform Package**)
+
+Dadurch kann ein vollständiger Charakter als eine einzige Datei archiviert, installiert, aktualisiert oder zwischen Entwicklungsständen verwaltet werden.
+
+Dieses Konzept orientiert sich an etablierten Containerformaten wie Anwendungs- oder Projektdateien, ist jedoch vollständig auf die Anforderungen der CAMP-Plattform zugeschnitten.
+
+---
+
+## 55.2 Ziele
+
+Ein Charakterpaket soll sämtliche charakterbezogenen Inhalte enthalten.
+
+Beispiele:
+
+* Konfiguration
+* Persönlichkeitsparameter
+* Bewegungsbibliothek
+* Voice Lines
+* Soundeffekte
+* LED-Profile
+* Animationen
+* Charakterwissen
+* HUD-Layouts
+* Instrumentenprofile
+* Symbole
+* Metadaten
+
+Das Betriebssystem benötigt dadurch lediglich eine einzige Datei, um einen vollständigen Charakter bereitzustellen.
+
+---
+
+## 55.3 Containerformat
+
+Das Dateiformat `.campp` ist als Containerformat definiert.
+
+Intern besteht es aus einer strukturierten Sammlung verschiedener Dateien.
+
+Die konkrete Speicherstruktur bleibt vollständig unter Kontrolle der CAMP-Plattform.
+
+Dadurch können zukünftige Versionen erweitert werden, ohne bestehende Charaktere grundsätzlich neu entwerfen zu müssen.
+
+Ein Charakterpaket wird vom Betriebssystem als logische Einheit behandelt.
+
+Die interne Ordnerstruktur ist für den Anwender nicht relevant.
+
+---
+
+## 55.4 Magic Number
+
+Jede `.campp`-Datei beginnt mit einer eindeutigen Dateisignatur.
+
+Magic Number:
+
+**`camp_module67`**
+
+Diese Kennung dient ausschließlich der eindeutigen Identifikation des Dateiformats.
+
+Sie verhindert, dass Dateien versehentlich als andere bekannte Dateiformate interpretiert werden.
+
+Beim Öffnen eines Pakets überprüft CAMP OS zunächst diese Signatur.
+
+Nur Dateien mit gültiger Kennung werden akzeptiert.
+
+---
+
+## 55.5 Manifest
+
+Jedes Charakterpaket enthält eine Manifestdatei.
+
+Sie beschreibt den Inhalt des Pakets.
+
+Typische Informationen sind beispielsweise:
+
+* Charaktername
+* Version
+* Paket-ID
+* Ersteller
+* Erstellungsdatum
+* CAMP OS-Version
+* Kompatibilitätsinformationen
+* benötigte Module
+* unterstützte Instrumente
+* unterstützte Suit-Typen
+* Prüfsummen
+
+Das Manifest bildet den Einstiegspunkt jedes Pakets.
+
+Ohne gültiges Manifest kann ein Charakter nicht geladen werden.
+
+---
+
+## 55.6 Digitale Signaturen
+
+CAMP unterstützt optional digitale Signaturen.
+
+Sie dienen ausschließlich der Integritätsprüfung.
+
+Dadurch kann festgestellt werden, ob ein Charakterpaket seit seiner Erstellung verändert wurde.
+
+Die Signatur dient nicht der Lizenzierung oder dem Vertrieb.
+
+Sie schützt ausschließlich die Konsistenz der Entwicklungsdaten.
+
+---
+
+# 56. Charakterverwaltung
+
+Beim Systemstart durchsucht CAMP OS die verfügbaren Charakterpakete.
+
+Jedes gültige Paket wird registriert.
+
+Anschließend stehen sämtliche installierten Charaktere zur Auswahl.
+
+Ein Charakterwechsel erfolgt ohne Änderungen am Betriebssystem.
+
+Lediglich ein anderes Charakterpaket wird geladen.
+
+Dadurch bleibt die Plattform vollständig unabhängig von einzelnen Figuren.
+
+---
+
+## 56.1 Lebenszyklus
+
+Der Lebenszyklus eines Charakterpakets besteht aus mehreren Phasen.
+
+Installation
+
+↓
+
+Validierung
+
+↓
+
+Registrierung
+
+↓
+
+Laden
+
+↓
+
+Aktivierung
+
+↓
+
+Betrieb
+
+↓
+
+Deaktivierung
+
+↓
+
+Entladen
+
+↓
+
+Archivierung
+
+Jede Phase besitzt definierte Zustände und Fehlermeldungen.
+
+---
+
+## 56.2 Entwicklungsmodus
+
+Während der Entwicklung kann ein Charakterpaket im Entwicklungsmodus geladen werden.
+
+Änderungen an Konfigurationen, Animationen oder Audiodateien müssen dadurch nicht jedes Mal vollständig neu installiert werden.
+
+Nach Abschluss der Entwicklung wird daraus ein finales `.campp`-Paket erzeugt.
+
+Dadurch bleiben Entwicklungsdaten und veröffentlichungsreife Pakete klar voneinander getrennt.
+
+---
+
+# 57. Eigentum und Projektcharakter
+
+CAMP ist als privates Langzeitprojekt konzipiert.
+
+Ziel der Entwicklung ist der Aufbau einer persönlichen, über viele Jahre gepflegten Robotikplattform.
+
+Eine kommerzielle Vermarktung der Hardware, Software oder Charakterpakete ist derzeit nicht vorgesehen.
+
+Alle technischen Entscheidungen werden daher ausschließlich unter den Gesichtspunkten Wartbarkeit, Erweiterbarkeit, Zuverlässigkeit und persönlicher Nutzung getroffen.
+
+Die Plattform ist nicht mit dem Ziel entstanden, ein Produkt zu werden.
+
+Sie dient als persönliche Forschungs-, Entwicklungs- und Kreativplattform, auf der Robotik, Embedded Systems, Softwareentwicklung, Künstliche Intelligenz und Cosplay in einem gemeinsamen System zusammengeführt werden.
+
+# 58. Dateisystemstruktur
+
+## 58.1 Zielsetzung
+
+CAMP OS verwendet eine klar definierte Verzeichnisstruktur.
+
+Jeder Systembestandteil besitzt einen festen Speicherort.
+
+Dadurch bleiben sowohl Entwicklung als auch Wartung langfristig übersichtlich.
+
+Die Struktur orientiert sich an modernen Betriebssystemen und vermeidet unstrukturierte Ablageorte.
+
+---
+
+## 58.2 Systemverzeichnis
+
+Das System selbst wird getrennt von Benutzerdaten gespeichert.
+
+Beispiel:
+
+`/system`
+
+Enthält unter anderem:
+
+* Systemdienste
+* Standardbibliotheken
+* Treiber
+* Kernmodule
+* Standardkonfigurationen
+
+Dieses Verzeichnis wird ausschließlich durch CAMP OS verwaltet.
+
+---
+
+## 58.3 Charakterverzeichnis
+
+Alle installierten Charakterpakete werden zentral verwaltet.
+
+`/characters`
+
+Beispiel:
+
+* `Freddy.campp`
+* `Bonnie.campp`
+* `Roxanne.campp`
+* `Chica.campp`
+
+Die eigentlichen Container bleiben unverändert gespeichert.
+
+Beim Laden wird das Paket lediglich eingelesen.
+
+---
+
+## 58.4 Datenverzeichnis
+
+Laufende Daten werden getrennt gespeichert.
+
+`/data`
+
+Beispiele:
+
+* Telemetrie
+* Logdateien
+* Kalibrierungen
+* Benutzerprofile
+* Aufnahmen
+* Diagnosen
+
+Diese Daten gehören nicht zum Charakterpaket.
+
+---
+
+## 58.5 Medien
+
+Große Dateien werden separat organisiert.
+
+`/media`
+
+Beispiele:
+
+* Videos
+* Motion-Capture-Aufnahmen
+* Fotos
+* Entwicklungsaufnahmen
+* Referenzmaterial
+
+Dadurch bleibt das eigentliche Betriebssystem kompakt.
+
+---
+
+# 59. Plugin-System
+
+## 59.1 Motivation
+
+Nicht jede Funktion gehört zum Kern von CAMP OS.
+
+Spezielle Erweiterungen werden als Plugins entwickelt.
+
+Dadurch bleibt das Betriebssystem klein und wartbar.
+
+Neue Funktionen können ergänzt werden, ohne den Systemkern zu verändern.
+
+---
+
+## 59.2 Plugin-Typen
+
+Beispiele:
+
+Audio-Plugins
+
+---
+
+Vision-Plugins
+
+---
+
+Sensor-Plugins
+
+---
+
+Instrumenten-Plugins
+
+---
+
+Diagnose-Plugins
+
+---
+
+HUD-Plugins
+
+---
+
+KI-Plugins
+
+---
+
+Netzwerk-Plugins
+
+Jeder Typ besitzt definierte Schnittstellen.
+
+---
+
+## 59.3 Lebenszyklus
+
+Ein Plugin durchläuft mehrere Zustände.
+
+Installiert
+
+↓
+
+Registriert
+
+↓
+
+Initialisiert
+
+↓
+
+Aktiv
+
+↓
+
+Pausiert
+
+↓
+
+Beendet
+
+↓
+
+Entladen
+
+Dadurch kann CAMP OS einzelne Plugins neu starten, ohne das gesamte System neu zu starten.
+
+---
+
+## 59.4 Abhängigkeiten
+
+Plugins können andere Module benötigen.
+
+Beispiele:
+
+Ein Instrumenten-Plugin benötigt:
+
+* Audio
+* Motion
+* Telemetrie
+
+Sind erforderliche Module nicht vorhanden, wird das Plugin nicht gestartet.
+
+Dadurch entstehen keine undefinierten Zustände.
+
+---
+
+# 60. Programmierschnittstellen (API)
+
+## 60.1 Zielsetzung
+
+Alle Module kommunizieren ausschließlich über dokumentierte Programmierschnittstellen.
+
+Direkte Zugriffe auf interne Komponenten sollen vermieden werden.
+
+Dadurch bleibt CAMP OS langfristig erweiterbar.
+
+---
+
+## 60.2 Hardware-API
+
+Die Hardware-API stellt grundlegende Funktionen bereit.
+
+Beispiele:
+
+Servo bewegen.
+
+LED setzen.
+
+Temperatur lesen.
+
+Kamera öffnen.
+
+Lautsprecher verwenden.
+
+Mikrofon starten.
+
+Dadurch muss ein Plugin die zugrunde liegende Hardware nicht kennen.
+
+---
+
+## 60.3 Charakter-API
+
+Die Charakter-API stellt Informationen über den aktuell geladenen Charakter bereit.
+
+Beispiele:
+
+Name
+
+Persönlichkeit
+
+Animationsbibliothek
+
+Voice Lines
+
+Instrument
+
+Standardfarben
+
+Emotionen
+
+Jedes Modul erhält dadurch dieselbe Informationsquelle.
+
+---
+
+## 60.4 Ereignissystem
+
+Viele Komponenten reagieren auf Ereignisse.
+
+Beispiele:
+
+Person erkannt.
+
+↓
+
+Charakter informiert.
+
+---
+
+Musik gestartet.
+
+↓
+
+Animation starten.
+
+---
+
+Akku niedrig.
+
+↓
+
+HUD aktualisieren.
+
+---
+
+Instrument verbunden.
+
+↓
+
+Charakterprofil erweitern.
+
+Dieses Ereignissystem reduziert direkte Abhängigkeiten zwischen einzelnen Diensten.
+
+---
+
+# 61. Bootvorgang
+
+## 61.1 Ziel
+
+Der Start von CAMP OS erfolgt in einer klar definierten Reihenfolge.
+
+Jeder Schritt baut auf dem vorherigen auf.
+
+Fehler können dadurch eindeutig lokalisiert werden.
+
+---
+
+## 61.2 Startsequenz
+
+Stufe 1
+
+Hardwareinitialisierung
+
+↓
+
+Stufe 2
+
+Systemkern
+
+↓
+
+Stufe 3
+
+Treiber
+
+↓
+
+Stufe 4
+
+Systemdienste
+
+↓
+
+Stufe 5
+
+Pluginverwaltung
+
+↓
+
+Stufe 6
+
+Hardwareprüfung
+
+↓
+
+Stufe 7
+
+Charakterverwaltung
+
+↓
+
+Stufe 8
+
+Laden eines `.campp`-Pakets
+
+↓
+
+Stufe 9
+
+Kalibrierung
+
+↓
+
+Stufe 10
+
+Bereit
+
+Erst nach erfolgreichem Abschluss aller Stufen gilt das System als einsatzbereit.
+
+---
+
+## 61.3 Startdiagnose
+
+Während des Bootvorgangs wird jede Komponente geprüft.
+
+Beispiele:
+
+✓ Kamera
+
+✓ Lautsprecher
+
+✓ Mikrofone
+
+✓ Sensoren
+
+✓ Akkus
+
+✓ Speicher
+
+✓ Servotreiber
+
+✓ Controller
+
+✓ Netzwerk
+
+✓ Display
+
+Alle Ergebnisse werden protokolliert.
+
+---
+
+## 61.4 Fehlerbehandlung
+
+Schlägt eine Initialisierung fehl, entscheidet CAMP OS über das weitere Vorgehen.
+
+Beispiele:
+
+Nicht kritischer Fehler
+
+↓
+
+Dienst deaktivieren
+
+↓
+
+System startet weiter.
+
+---
+
+Kritischer Fehler
+
+↓
+
+Bootvorgang stoppen.
+
+↓
+
+Diagnose anzeigen.
+
+Dadurch bleibt jederzeit nachvollziehbar, weshalb ein Start fehlgeschlagen ist.
+
+---
+
+# 62. Entwicklungswerkzeuge
+
+## 62.1 Zielsetzung
+
+Neben dem eigentlichen Betriebssystem entsteht eine Sammlung von Werkzeugen zur Entwicklung der Plattform.
+
+Diese Werkzeuge bilden gemeinsam das CAMP Development Kit.
+
+Sie dienen ausschließlich der Entwicklung und Wartung.
+
+Sie sind kein Bestandteil des normalen Betriebs.
+
+---
+
+## 62.2 Bestandteile
+
+Langfristig soll das Development Kit unter anderem folgende Werkzeuge enthalten:
+
+* Character Editor
+* Motion Editor
+* Servo Calibration Tool
+* Instrument Manager
+* Telemetry Viewer
+* Package Builder
+* Firmware Manager
+* Log Analyzer
+* Vision Debugger
+* AI Console
+
+Jedes Werkzeug konzentriert sich auf einen klar abgegrenzten Aufgabenbereich.
+
+---
+
+## 62.3 Package Builder
+
+Der Package Builder erstellt `.campp`-Dateien.
+
+Er überprüft unter anderem:
+
+* Magic Number
+* Manifest
+* Versionsnummer
+* Paketstruktur
+* Prüfsummen
+* Signaturen
+* Kompatibilität
+
+Erst nach erfolgreicher Prüfung wird ein gültiges Charakterpaket erzeugt.
+
+Dadurch wird sichergestellt, dass CAMP OS ausschließlich konsistente und vollständige Pakete lädt.
+
+---
+
+## 62.4 Langfristige Vision
+
+Mit zunehmender Entwicklung soll CAMP nicht mehr aus einzelnen Programmen bestehen, sondern aus einem zusammenhängenden Entwicklungsökosystem.
+
+Von der Konstruktion eines Endoskeletts über das Trainieren neuer Bewegungen bis hin zum Erstellen eines Charakterpakets sollen sämtliche Arbeitsschritte innerhalb derselben Plattform erfolgen.
+
+Dadurch entsteht eine konsistente Entwicklungsumgebung, in der Mechanik, Elektronik, Software, Künstliche Intelligenz und Charakterdesign nicht als getrennte Disziplinen betrachtet werden, sondern als Bestandteile eines gemeinsamen Systems.
+
+# 63. CAMP Software Development Kit (SDK)
+
+## 63.1 Zielsetzung
+
+Das CAMP SDK stellt sämtliche Werkzeuge, Bibliotheken und Dokumentationen bereit, welche zur Entwicklung neuer Komponenten innerhalb der CAMP-Plattform erforderlich sind.
+
+Es bildet die offizielle Entwicklungsgrundlage sämtlicher Softwaremodule.
+
+Das SDK dient ausschließlich der internen Entwicklung des Projekts und gewährleistet, dass neue Module denselben Qualitäts- und Schnittstellenstandards folgen wie der bestehende Systemkern.
+
+---
+
+## 63.2 Bestandteile
+
+Das SDK umfasst unter anderem:
+
+* API-Dokumentation
+* Bibliotheken
+* Beispieldateien
+* Testprojekte
+* Plugin-Vorlagen
+* Build-Werkzeuge
+* Debugging-Hilfen
+* Simulationsschnittstellen
+
+---
+
+## 63.3 Ziel
+
+Neue Software soll entwickelt werden können, ohne bestehende Kernkomponenten verändern zu müssen.
+
+Dadurch bleibt CAMP OS langfristig stabil und erweiterbar.
+
+---
+
+# 64. CAMP CLI
+
+## 64.1 Motivation
+
+Für Entwicklungs-, Wartungs- und Automatisierungsaufgaben stellt CAMP ein Kommandozeilenwerkzeug bereit.
+
+Die CAMP CLI ermöglicht den Zugriff auf nahezu alle Funktionen des Systems.
+
+---
+
+## 64.2 Beispielbefehle
+
+````npm
+camp build Freddy
+camp install Freddy.campp
+camp uninstall Freddy
+camp telemetry
+camp logs
+camp diagnose
+camp update
+camp calibrate eyes
+camp calibrate neck
+camp package Bonnie
+camp verify Freddy.campp
+camp simulator
+````
+
+Diese Befehle dienen als standardisierte Schnittstelle zwischen Entwickler und Plattform.
+
+---
+
+## 64.3 Automatisierung
+
+Die CLI ermöglicht außerdem die Erstellung automatisierter Entwicklungsabläufe.
+
+Beispielsweise:
+
+* automatisches Erstellen von Charakterpaketen
+* Ausführen von Tests
+* Firmware-Updates
+* Datensicherungen
+* Simulationen
+* Export von Diagnosedaten
+
+---
+
+# 65. Character Editor
+
+## 65.1 Zielsetzung
+
+Der Character Editor dient der Erstellung und Verwaltung sämtlicher Charaktere.
+
+Er ersetzt die direkte Bearbeitung von Konfigurationsdateien.
+
+Alle Änderungen erfolgen über eine grafische Benutzeroberfläche.
+
+---
+
+## 65.2 Funktionen
+
+Bearbeitung von:
+
+* Persönlichkeit
+* Voice Lines
+* Wissensbasis
+* Bewegungsbibliothek
+* Instrumentenzuweisung
+* Farbprofilen
+* HUD-Konfiguration
+* Animationen
+* Metadaten
+
+---
+
+## 65.3 Live-Vorschau
+
+Änderungen sollen unmittelbar getestet werden können.
+
+Die Vorschau umfasst beispielsweise:
+
+* Sprachausgabe
+* Animationen
+* Blickverhalten
+* LED-Effekte
+* Instrumentenzuweisungen
+
+---
+
+# 66. Motion Editor
+
+## 66.1 Zweck
+
+Der Motion Editor dient der Erstellung sämtlicher Bewegungsabläufe.
+
+Animationen werden unabhängig von konkreten Servowinkeln entwickelt.
+
+Stattdessen arbeitet der Editor mit einem abstrahierten Skelettmodell.
+
+---
+
+## 66.2 Funktionen
+
+* Keyframes
+* Interpolation
+* Geschwindigkeitsprofile
+* Schleifen
+* Übergänge
+* Spiegelung
+* Import von Motion Capture
+* Export in Charakterpakete
+
+---
+
+## 66.3 Testmodus
+
+Jede Animation kann innerhalb einer Simulation überprüft werden.
+
+Dabei werden unter anderem sichtbar:
+
+* Gelenkwinkel
+* Geschwindigkeit
+* Kollisionen
+* Schwerpunkt
+* Bewegungsablauf
+
+---
+
+# 67. AI Studio
+
+## 67.1 Ziel
+
+Das AI Studio bildet die Entwicklungsumgebung sämtlicher KI-Komponenten.
+
+Hier werden Charaktere nicht programmiert, sondern trainiert, konfiguriert und analysiert.
+
+---
+
+## 67.2 Aufgaben
+
+* Prompt-Entwicklung
+* Wissensverwaltung
+* Trainingsdatensätze
+* Verhaltensparameter
+* Gesprächsanalysen
+* Bewegungsanalyse
+* Testszenarien
+
+---
+
+## 67.3 Simulation
+
+Die KI kann vollständig innerhalb der Simulationsumgebung getestet werden.
+
+Dadurch können neue Verhaltensweisen entwickelt werden, ohne den realen Animatronic zu verwenden.
+
+---
+
+# 68. Telemetry Studio
+
+## 68.1 Zielsetzung
+
+Das Telemetry Studio dient der Analyse sämtlicher Systemdaten.
+
+Es richtet sich ausschließlich an Entwicklungs- und Wartungsarbeiten.
+
+---
+
+## 68.2 Funktionen
+
+* Live-Diagramme
+* Temperaturverläufe
+* CPU-Auslastung
+* RAM
+* Akkuzustand
+* Stromaufnahme
+* Netzwerk
+* Servoaktivität
+* Kamerastatus
+* Sensorstatus
+
+---
+
+## 68.3 Analyse
+
+Vergangene Sitzungen können erneut geladen werden.
+
+Dadurch lassen sich Fehler auch nach längerer Zeit nachvollziehen.
+
+---
+
+# 69. Firmware Manager
+
+## 69.1 Motivation
+
+Da CAMP zahlreiche Mikrocontroller verwendet, wird deren Verwaltung zentralisiert.
+
+---
+
+## 69.2 Funktionen
+
+* Firmware installieren
+* Versionen vergleichen
+* Rollback
+* Prüfsummen
+* Geräteerkennung
+* Updatehistorie
+
+---
+
+## 69.3 Kompatibilität
+
+Vor jeder Installation überprüft der Firmware Manager:
+
+* Controller-Typ
+* Hardwareversion
+* Firmwareversion
+* Abhängigkeiten
+
+Fehlerhafte Aktualisierungen sollen dadurch verhindert werden.
+
+---
+
+# 70. Digital Twin
+
+## 70.1 Definition
+
+Der Digital Twin stellt eine virtuelle Repräsentation eines realen CAMP-Systems dar.
+
+Er besitzt dieselbe Mechanik, dieselben Gelenke und dieselben Softwarekomponenten wie das physische Endoskelett.
+
+---
+
+## 70.2 Ziel
+
+Neue Funktionen sollen zunächst virtuell entwickelt werden.
+
+Erst nach erfolgreicher Simulation erfolgt die Übertragung auf die reale Hardware.
+
+---
+
+## 70.3 Synchronisation
+
+Langfristig kann der Digital Twin mit dem realen System gekoppelt werden.
+
+Dadurch lassen sich reale Bewegungen und virtuelle Modelle miteinander vergleichen.
+
+Abweichungen können automatisch erkannt werden.
+
+---
+
+# 71. Simulationsumgebung
+
+## 71.1 Zielsetzung
+
+Die Simulationsumgebung dient als vollständig virtuelle Entwicklungsplattform.
+
+Hier können sämtliche Komponenten getestet werden.
+
+Beispiele:
+
+* Servobewegungen
+* Kameraverarbeitung
+* Charakterverhalten
+* Instrumente
+* Animationen
+* Netzwerk
+* Telemetrie
+
+---
+
+## 71.2 Vorteile
+
+Simulation reduziert:
+
+* Entwicklungszeit
+* Materialverschleiß
+* Fehlersuche
+* Risiken
+
+Neue Ideen können schneller überprüft werden als auf realer Hardware.
+
+---
+
+# 72. Entwicklungsrichtlinien
+
+Für sämtliche Entwicklungsbereiche gelten verbindliche Standards.
+
+Hierzu gehören unter anderem:
+
+* Benennungskonventionen
+* Dokumentationspflicht
+* Versionsverwaltung
+* Codequalität
+* CAD-Richtlinien
+* Testverfahren
+* Sicherheitsbewertungen
+
+Diese Standards sorgen dafür, dass CAMP trotz seiner Größe langfristig konsistent bleibt.
+
+---
+
+# 73. Projektmanagement
+
+## 73.1 Langzeitprojekt
+
+CAMP wird als mehrjähriges Entwicklungsprojekt betrachtet.
+
+Neue Funktionen werden in kleinen, abgeschlossenen Entwicklungsabschnitten umgesetzt.
+
+---
+
+## 73.2 Entwicklungsphasen
+
+Jede Funktion durchläuft mehrere Schritte.
+
+Idee
+
+↓
+
+Recherche
+
+↓
+
+Konzept
+
+↓
+
+CAD
+
+↓
+
+Prototyp
+
+↓
+
+Test
+
+↓
+
+Überarbeitung
+
+↓
+
+Dokumentation
+
+↓
+
+Integration
+
+↓
+
+Freigabe
+
+---
+
+## 73.3 Priorisierung
+
+Neue Funktionen werden nach folgenden Kriterien bewertet:
+
+* Sicherheitsrelevanz
+* Nutzen
+* Komplexität
+* Abhängigkeiten
+* Wartbarkeit
+
+Dadurch entstehen nachvollziehbare Entwicklungsprioritäten.
+
+---
+
+# 74. Langfristige Roadmap
+
+Die CAMP-Plattform wird schrittweise erweitert.
+
+Eine mögliche Entwicklungsabfolge lautet:
+
+Version 0.x
+
+Grundlagen
+
+Mechanik
+
+Elektronik
+
+Erste Software
+
+↓
+
+Version 1.x
+
+Erstes vollständiges Endoskelett
+
+↓
+
+Version 2.x
+
+Erster vollständiger Suit
+
+↓
+
+Version 3.x
+
+Autonomer Betrieb
+
+↓
+
+Version 4.x
+
+Mehrere Charaktere
+
+↓
+
+Version 5.x
+
+Funktionierende Instrumente
+
+↓
+
+Version 6.x
+
+Fortgeschrittene KI
+
+↓
+
+Version 7.x
+
+Mehrere Animatronics gleichzeitig
+
+↓
+
+Version 8.x
+
+Vollständiges CAMP-Ökosystem
+
+Diese Roadmap stellt keinen festen Zeitplan dar.
+
+Sie beschreibt vielmehr die langfristige Entwicklungsrichtung der Plattform.
+
+---
+
+# 75. Zukunftsperspektive
+
+CAMP verfolgt nicht das Ziel, einen einzelnen Animatronic zu bauen.
+
+Langfristig soll eine technische Plattform entstehen, welche über viele Jahre hinweg erweitert und verfeinert werden kann.
+
+Mit jeder neuen Konstruktion, jeder verbesserten Softwareversion und jedem zusätzlichen Charakter wächst nicht nur die Anzahl der Funktionen, sondern auch die Reife der gesamten Plattform.
+
+Der eigentliche Wert von CAMP liegt daher nicht in einem einzelnen Endoskelett oder einem einzelnen Suit, sondern in der Summe aller entwickelten Technologien, Erfahrungen und Dokumentationen.
+
+Das Projekt verbindet Robotik, Embedded Systems, Softwareentwicklung, künstliche Intelligenz, Maschinenbau, additive Fertigung, Elektronik, Charakterdesign und Cosplay zu einem gemeinsamen Gesamtsystem.
+
+Es versteht sich als persönliche technische Plattform, deren Architektur bewusst auf Langfristigkeit ausgelegt ist.
+
+Auch wenn einzelne Komponenten im Laufe der Jahre ersetzt oder vollständig neu entwickelt werden, bleibt die grundlegende Philosophie unverändert:
+
+* Ein modulares Endoskelett.
+* Modulare Suits.
+* Ein gemeinsames Betriebssystem.
+* Installierbare Charaktere.
+* Eine einheitliche Entwicklungsumgebung.
+* Eine konsistente Dokumentation.
+
+Und eine Plattform, die mit jedem Entwicklungsschritt leistungsfähiger wird, ohne ihre ursprünglichen Designprinzipien zu verlieren.
+
+Mit diesem Dokument endet nicht die Planung von CAMP.
+
+Es bildet vielmehr den Ausgangspunkt für die praktische Umsetzung einer langfristigen Robotikplattform, deren Entwicklung über viele Jahre hinweg fortgeführt werden soll.
