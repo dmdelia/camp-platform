@@ -1,3 +1,10 @@
+<p id="tabs" align="left">
+  <a href="#tabs"><b>🔹 README</b></a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+  <a href="social_media.md"><b>📱 Social Media</b></a>
+</p>
+
+---
+
 # CAMP – Brand, Content & Community Strategy
 
 **Projekt:** CAMP (Cosplay Animatronic Module Platform)
