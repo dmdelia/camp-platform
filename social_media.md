@@ -1,6 +1,6 @@
-<p id="tabs" align="left">
-  <a href="#tabs"><b>🔹 README</b></a> &nbsp;&nbsp;|&nbsp;&nbsp; 
-  <a href="social_media.md"><b>📱 Social Media</b></a>
+<p align="left">
+  <a href="README.md">📄 README</a> &nbsp;&nbsp;|&nbsp;&nbsp; 
+  <span><b>📱 Social Media</b></span>
 </p>
 
 ---
