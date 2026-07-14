@@ -5,8 +5,5 @@
 			"path": "."
 		}
 	],
-	"settings": {
-		"dotnet.defaultSolution": "BLUNTFORCE.sln",
-		"liveServer.settings.multiRootWorkspaceName": "Downloads"
-	}
+	"settings": {}
 }
